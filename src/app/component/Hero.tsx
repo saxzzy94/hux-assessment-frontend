@@ -16,7 +16,7 @@ const Hero: FC = () => {
 						in to get started!
 					</Text>
 					<div className="max-w-lg mx-auto sm:max-w-none sm:flex sm:justify-center md:text-lg">
-						<Button className="bg-blue-900">
+						<Button className="bg-blue-900 text-white">
 							<Link href="/signup">Get started</Link>
 						</Button>
 					</div>
