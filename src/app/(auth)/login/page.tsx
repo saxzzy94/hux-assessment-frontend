@@ -26,8 +26,8 @@ const Login = () => {
 
 	useEffect(() => {
 		if (!user) return;
-		router.push(`${path ? path : "/contacts"}`);
-	}, [user, path]);
+		router.push(`/contacts`);
+	}, [user]);
 
 	return (
 		<div className="mx-auto max-w-2xl p-4 md:p-8 bg-white rounded-lg">

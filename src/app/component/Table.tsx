@@ -1,11 +1,13 @@
 import React from "react";
 import Button from "./Button";
 import usePagination from "../../hook/usePagination";
+import { useRouter } from "next/navigation";
 
 const CustomTable: React.FC<{
 	headers: string[];
 	tableItems: { [key: string]: string }[];
 }> = ({ headers, tableItems }) => {
+	const router = useRouter();
 	const {
 		currentPageData,
 		pageCount,
@@ -28,7 +30,11 @@ const CustomTable: React.FC<{
 					</thead>
 					<tbody className="table-row-group bg-gray-100">
 						{currentPageData?.map((data, i) => (
-							<tr className="bg-white border-t border-gray-100" key={i}>
+							<tr
+								className="bg-white border-t border-gray-100 hover:cursor-pointer hover:bg-blue-100"
+								key={data.id}
+								onClick={() => router.push(`/contacts/${data.id}`)}
+							>
 								<th
 									scope="row"
 									className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"

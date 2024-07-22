@@ -73,6 +73,7 @@ export const ContactProvider: React.FC<{ children: React.ReactNode }> = ({
 
 	const deleteContact = async (id: string) => {
 		const response = await apiCall(`/contacts/${id}`, HTTPVerbs.DELETE);
+		console.log(response);
 		if (response.success) {
 			await fetchContacts();
 			toast.success(response.message);

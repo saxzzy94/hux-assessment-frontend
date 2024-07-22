@@ -11,11 +11,10 @@ import { useContacts } from "../../context/ContactContext";
 type Props = {};
 
 const page = (props: Props) => {
-	const { contacts, deleteContact } = useContacts();
-	console.log(contacts);
+	const { contacts } = useContacts();
 	return (
 		<PrivateWrapper>
-			<div className="flex flex-col px-8">
+			<div className="flex flex-col px-8 gap-4">
 				<div className="flex justify-between">
 					<Title>Contacts</Title>
 					<Button className="bg-blue-900 text-white">
