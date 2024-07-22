@@ -1,9 +1,10 @@
 "use client";
 import Link from "next/link";
 import Title from "../../component/Title";
-import { FormEvent, useCallback, useRef } from "react";
+import { FormEvent, useCallback, useEffect, useRef } from "react";
 import AuthForm from "../component/authForm";
 import { useAuth } from "../../../context/AuthContext";
+import { useRouter, useSearchParams } from "next/navigation";
 
 type Props = {};
 
@@ -11,6 +12,8 @@ const Login = () => {
 	const emailRef = useRef<HTMLInputElement>(null);
 	const passwordRef = useRef<HTMLInputElement>(null);
 	const { user, login } = useAuth();
+	const path = useSearchParams().get("path");
+	const router = useRouter();
 
 	const handleSubmit = useCallback((e: FormEvent) => {
 		e.preventDefault();
@@ -20,6 +23,12 @@ const Login = () => {
 			login(email, password);
 		}
 	}, []);
+
+	useEffect(() => {
+		if (!user) return;
+		router.push(`${path ? path : "/contacts"}`);
+	}, [user, path]);
+
 	return (
 		<div className="mx-auto max-w-2xl p-4 md:p-8 bg-white rounded-lg">
 			<div className="flex flex-col p-2 md:p-4">

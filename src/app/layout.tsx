@@ -4,6 +4,7 @@ import "./globals.css";
 import { AuthProvider } from "../context/AuthContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ContactProvider } from "../context/ContactContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,17 +22,19 @@ export default function RootLayout({
 		<html lang="en">
 			<body className={inter.className}>
 				<AuthProvider>
-					<ToastContainer
-						position="top-center"
-						draggable={false}
-						hideProgressBar
-						limit={3}
-						pauseOnHover={true}
-						pauseOnFocusLoss={false}
-					/>
-					<div className="flex min-h-screen flex-col items-center justify-between p-8">
-						<main className="container mx-auto px-4 py-8">{children}</main>
-					</div>
+					<ContactProvider>
+						<ToastContainer
+							position="top-center"
+							draggable={false}
+							hideProgressBar
+							limit={3}
+							pauseOnHover={true}
+							pauseOnFocusLoss={false}
+						/>
+						<div className="flex min-h-screen flex-col items-center justify-between p-8">
+							<main className="container mx-auto px-4 py-8">{children}</main>
+						</div>
+					</ContactProvider>
 				</AuthProvider>
 			</body>
 		</html>

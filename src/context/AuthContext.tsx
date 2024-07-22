@@ -32,7 +32,6 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
 	useEffect(() => {
 		const token = localStorage.getItem("token");
 		if (token) {
-			console.log(`token: ${token}`);
 			(async () => await loadUser())();
 		}
 	}, []);
@@ -52,7 +51,6 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
 	};
 	const loadUser = async () => {
 		const res = await apiCall<APIResponse>("/user");
-		console.log(res);
 		if (res.success) {
 			setUser(res.data.user);
 		}
