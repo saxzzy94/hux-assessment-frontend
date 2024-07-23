@@ -3,6 +3,8 @@ import Hero from "./component/Hero";
 import { useAuth } from "../context/AuthContext";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Feature from "./component/Feature";
+import Footer from "./component/Footer";
 
 export default function Home() {
 	const { user } = useAuth();
@@ -15,6 +17,8 @@ export default function Home() {
 	return (
 		<div>
 			<Hero />
+			<Feature />
+			<Footer />
 		</div>
 	);
 }

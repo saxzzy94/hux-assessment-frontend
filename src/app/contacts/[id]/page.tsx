@@ -3,9 +3,8 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Pencil, Trash2, ArrowLeft } from "lucide-react";
+import { Pencil, Trash2 } from "lucide-react";
 import { useContacts } from "../../../context/ContactContext";
-import { useAuth } from "../../../context/AuthContext";
 import BackButton from "../../component/BackButton";
 import Modal from "../../component/Modal";
 import Text from "../../component/Text";
