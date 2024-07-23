@@ -2,6 +2,7 @@ import React from "react";
 import Button from "./Button";
 import usePagination from "../../hook/usePagination";
 import { useRouter } from "next/navigation";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const CustomTable: React.FC<{
 	headers: string[];
@@ -54,21 +55,25 @@ const CustomTable: React.FC<{
 				</span>
 
 				<div className="inline-flex rounded-md shadow-sm gap-2">
-					{/* <Button
+					<Button
 						className={`${
 							currentPage === 1 ? "bg-gray-100 text-gray-200" : ""
 						} " border"`}
-						handleSubmit={goToPreviousPage}
+						onClick={goToPreviousPage}
 						disabled={currentPage === 1}
-					/> */}
-					{/* 
+					>
+						<ChevronLeft />
+					</Button>
+
 					<Button
 						className={`${
 							currentPage === pageCount ? "bg-gray-100 text-gray-200" : "border"
 						} text-black`}
-						// handleSubmit={goToNextPage}
-						// disabled={currentPage === pageCount}
-					/> */}
+						onClick={goToNextPage}
+						disabled={currentPage === pageCount}
+					>
+						<ChevronRight />
+					</Button>
 				</div>
 			</div>
 		</div>

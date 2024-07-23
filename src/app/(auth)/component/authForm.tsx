@@ -26,7 +26,10 @@ const AuthForm: FC<Props> = ({ btnText, emailRef, passwordRef, onSubmit }) => {
 				name={"password"}
 				placeholder="Enter your password"
 			/>
-			<Button className={"bg-blue-900 w-full text-white max-w-md"}>
+			<Button
+				className={"bg-blue-900 w-full text-white max-w-md"}
+				type="submit"
+			>
 				{btnText}
 			</Button>
 		</form>

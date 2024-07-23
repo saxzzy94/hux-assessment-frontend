@@ -5,6 +5,7 @@ import { AuthProvider } from "../context/AuthContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ContactProvider } from "../context/ContactContext";
+import Navbar from "./component/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,6 +32,7 @@ export default function RootLayout({
 							pauseOnHover={true}
 							pauseOnFocusLoss={false}
 						/>
+						<Navbar />
 						<div className="flex min-h-screen flex-col items-center justify-between p-8">
 							<main className="container mx-auto px-4 py-8">{children}</main>
 						</div>

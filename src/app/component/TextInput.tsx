@@ -1,10 +1,8 @@
-
-
 type InputProps = {
-	label?: string;
 	type: string;
 	name: string;
 	placeholder?: string;
+	label?: string;
 	value?: string | number;
 	className?: string;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -12,6 +10,7 @@ type InputProps = {
 };
 
 const Input: React.FC<InputProps> = ({
+	label,
 	type,
 	name,
 	placeholder,
@@ -21,6 +20,12 @@ const Input: React.FC<InputProps> = ({
 	className,
 }) => (
 	<div className={"relative mb-6 mt-4 max-w-md" + " " + className}>
+		<label
+			className="block bg-indigo-700-100 text-black-800 text-md font-medium mb-1 items-center justify-center rounded-lg px-3"
+			htmlFor={name}
+		>
+			{label}
+		</label>
 		<input
 			ref={reference}
 			name={name}

@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 
 interface AuthContextType {
 	user: any | null;
+	loading: boolean;
 	login: (email: string, password: string) => Promise<void>;
 	logout: () => void;
 	signup: (email: string, password: string) => Promise<void>;
@@ -28,6 +29,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
 	const [user, setUser] = useState<any | null>(null);
 	const router = useRouter();
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		const token = localStorage.getItem("token");
@@ -41,19 +43,22 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
 			email,
 			password,
 		});
-		await loadUser();
+
 		if (res.success) {
 			localStorage.setItem("token", res.data.token);
+			await loadUser();
 			toast.success(res.message);
 		} else {
 			toast.error(res.message);
 		}
 	};
 	const loadUser = async () => {
+		setLoading(true);
 		const res = await apiCall<APIResponse>("/user");
 		if (res.success) {
 			setUser(res.data.user);
 		}
+		setLoading(false);
 	};
 
 	const logout = () => {
@@ -63,6 +68,7 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
 	};
 
 	const signup = async (email: string, password: string) => {
+		setLoading(true);
 		const res = await apiCall<APIResponse>("/signup", HTTPVerbs.POST, {
 			email,
 			password,
@@ -72,9 +78,10 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
 		} else {
 			toast.error(res.message);
 		}
+		setLoading(false);
 	};
 	return (
-		<AuthContext.Provider value={{ user, login, logout, signup }}>
+		<AuthContext.Provider value={{ user, loading, login, logout, signup }}>
 			{children}
 		</AuthContext.Provider>
 	);

@@ -26,7 +26,6 @@ interface Contact {
 export default function ContactPage({ params }: ContactPageProps) {
 	const { id } = params;
 	const router = useRouter();
-	const { user } = useAuth();
 	const { contacts, deleteContact } = useContacts();
 	const [contact, setContact] = useState<Contact | null>(null);
 	const [open, setOpen] = useState(false);
@@ -37,7 +36,6 @@ export default function ContactPage({ params }: ContactPageProps) {
 	}, [id, contacts]);
 
 	const handleDelete = async () => {
-        console.log('delete')
 		await deleteContact(id);
 		setOpen(false);
 		router.push("/contacts");
